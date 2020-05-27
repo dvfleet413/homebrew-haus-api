@@ -1,0 +1,2 @@
+class MaltsController < ApplicationController
+end
