@@ -10,8 +10,18 @@ class RecipesController < ApplicationController
     end
 
     def create
+        recipe = Recipe.create!(recipes_params)
     end
 
     def destroy
     end
+
+    private
+        def recipes_params
+            params.require(:recipe).permit(:name, :category, :summary, 
+                                            grains_attributes: [:name, :weight], 
+                                            malts_attributes: [:name, :weight],
+                                            hops_attributes: [:name, :hop_type, :weight],
+                                            yeast_attributes: [:name])
+        end
 end
