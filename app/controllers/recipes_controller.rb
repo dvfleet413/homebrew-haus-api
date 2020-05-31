@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
     def create
         recipe = Recipe.create!(recipes_params)
+        render json: RecipeSerializer.new(recipe).to_serialized_json
     end
 
     def destroy
