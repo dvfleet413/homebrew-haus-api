@@ -13,6 +13,6 @@ class ApplicationController < ActionController::API
 
     def decode_token_and_get_user_id
         headers = ActionDispatch::Http::Headers.from_hash(request.env)
-        JWT.decode(headers["HTTP_AUTH"], ENV["JWT_TOKEN_SECRET"])[0].id
+        JWT.decode(headers["HTTP_AUTH"], ENV["JWT_TOKEN_SECRET"])[0]["id"]
     end
 end
