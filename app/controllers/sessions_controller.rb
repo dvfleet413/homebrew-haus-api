@@ -13,9 +13,6 @@ class SessionsController < ApplicationController
         end
     end
 
-    def destroy
-    end
-
     def get_current_user
         render json: { user: UserSerializer.new(current_user).to_serialized_json }, status: :ok
     end

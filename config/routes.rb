@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   post '/logout', to: "sessions#destroy"
   get '/get_current_user', to: "sessions#get_current_user"
+  post '/signup', to: "users#create"
   resources :users, only: [:create, :destroy]
   resources :recipes, only: [:index, :show, :create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
