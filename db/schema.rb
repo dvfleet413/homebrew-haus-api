@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_212429) do
+ActiveRecord::Schema.define(version: 2020_06_01_041811) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "grains", force: :cascade do |t|
     t.string "name"
@@ -64,6 +73,8 @@ ActiveRecord::Schema.define(version: 2020_05_30_212429) do
     t.index ["recipe_id"], name: "index_yeasts_on_recipe_id"
   end
 
+  add_foreign_key "favorites", "recipes"
+  add_foreign_key "favorites", "users"
   add_foreign_key "grains", "recipes"
   add_foreign_key "hops", "recipes"
   add_foreign_key "malts", "recipes"
