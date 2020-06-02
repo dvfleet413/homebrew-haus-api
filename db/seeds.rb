@@ -1,3 +1,12 @@
+Recipe.create!([
+  {name: "Hop Devil", category: "American IPA", summary: "Luminescent amber IPA with a thick, beige head and punchy hop aroma. A rich, malty palate with tangy hops in the back leads to a long, dry finish packed full of Cascade hops."},
+  {name: "Long Trail Ale", category: "American Amber Ale", summary: "Full-bodied amber ale with clean, complex flavor"},
+  {name: "Goose Island Honker's Ale", category: "English Bitter", summary: "Medium bodied beer with off white head.  Pleasing blend of Cascade hops and spicy fruit which leads to a well-rounded smooth body of malt and hops."},
+  {name: "Sierra Nevada Porter", category: "Porter", summary: "Medium to full-bodied porter with attractive chestnut body with red highlights and creamy tan head.  Enticing medley of malt, roasted grains, chocolate, coffee, and floral hops. Malty with accents of nutty and roasted grains, chocolate, and packed with hops."},
+  {name: "Fat Tire Amber Ale", category: "Belgian-Style Pale Ale", summary: "Copper/amber beer with off-white, tightly-beaded head with Belgian lace. Heady aroma of bread and sweet caramel malt. Nice balance of sweet malt, freshly baked biscuits and crisp hops."},
+  {name: "Magic Hat Blind Faith IPA", category: "IPA", summary: "Off-white head covers a multi-faceted copper beer with golden/amber tints. Malt greets the nose and leads to a potent hop aroma. Hoppy bitterness is tempered by malt and the finish is long and brimming with cascade hops."},
+  {name: "Belhaven Wee Heavy", category: "Scottish Ale", summary: "Pours with a stunning, creamy dark beige head that gently collapses into an amber beer. Powerful aroma of sweet malt and bread leads to a complex palate brimming with sweet malt, then roast malt enters with just a hint of smoke."}
+])
 Yeast.create!([
   {name: "Wyeast 1056 American Ale", recipe_id: 1},
   {name: "Wyeast 1007 German Ale Yeast", recipe_id: 2},
@@ -37,19 +46,6 @@ Hop.create!([
   {name: "Whitbread Goldings Variety @ 5.7 AA", hop_type: "bittering", weight: 1.5, recipe_id: 7},
   {name: "Fuggles", hop_type: "flavor", weight: 0.25, recipe_id: 7},
   {name: "East Kent Goldings", hop_type: "flavor", weight: 0.25, recipe_id: 7}
-])
-Recipe.create!([
-  {name: "Hop Devil", category: "American IPA", summary: "Luminescent amber IPA with a thick, beige head and punchy hop aroma. A rich, malty palate with tangy hops in the back leads to a long, dry finish packed full of Cascade hops."},
-  {name: "Long Trail Ale", category: "American Amber Ale", summary: "Full-bodied amber ale with clean, complex flavor"},
-  {name: "Goose Island Honker's Ale", category: "English Bitter", summary: "Medium bodied beer with off white head.  Pleasing blend of Cascade hops and spicy fruit which leads to a well-rounded smooth body of malt and hops."},
-  {name: "Sierra Nevada Porter", category: "Porter", summary: "Medium to full-bodied porter with attractive chestnut body with red highlights and creamy tan head.  Enticing medley of malt, roasted grains, chocolate, coffee, and floral hops. Malty with accents of nutty and roasted grains, chocolate, and packed with hops."},
-  {name: "Fat Tire Amber Ale", category: "Belgian-Style Pale Ale", summary: "Copper/amber beer with off-white, tightly-beaded head with Belgian lace. Heady aroma of bread and sweet caramel malt. Nice balance of sweet malt, freshly baked biscuits and crisp hops."},
-  {name: "Magic Hat Blind Faith IPA", category: "IPA", summary: "Off-white head covers a multi-faceted copper beer with golden/amber tints. Malt greets the nose and leads to a potent hop aroma. Hoppy bitterness is tempered by malt and the finish is long and brimming with cascade hops."},
-  {name: "Belhaven Wee Heavy", category: "Scottish Ale", summary: "Pours with a stunning, creamy dark beige head that gently collapses into an amber beer. Powerful aroma of sweet malt and bread leads to a complex palate brimming with sweet malt, then roast malt enters with just a hint of smoke."}
-])
-Favorite.create!([
-  {recipe_id: 2, user_id: 5},
-  {recipe_id: 1, user_id: 5}
 ])
 Grain.create!([
   {name: "German 10 L Dark Munich Malt", weight: 8.0, recipe_id: 1},
@@ -96,4 +92,8 @@ User.create!([
   {name: "Dave", email: "dave@dave.com", password_digest: "$2a$12$hMb2nfeSubp8ZaBcHsZ.1.ePXJV4EBKwJQHnALsVNXD6BK7c/T4Ua"},
   {name: "Vern", email: "vern@vern.com", password_digest: "$2a$12$epxiJarbWRNZrxUDpJpNJeqU3CilK1lEt3Cv/HU/2ONmm9fPjlsBG"},
   {name: "dvfleet413", email: "dvfleet413@gmail.com", password_digest: "$2a$12$9f32gn.KqUdwij4jnZGz4e.8L.KKv3KGZt0jvA2JF/za3WnLa7pWq"}
+])
+Favorite.create!([
+  {recipe_id: 2, user_id: 3},
+  {recipe_id: 1, user_id: 3}
 ])
