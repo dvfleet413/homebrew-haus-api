@@ -8,8 +8,12 @@ class SessionsController < ApplicationController
                 jwt: token
             }
             render json: resp
+        elsif @user && !@user.authenticate(params[:password])
+            render json: {error: "Incorrect password, please try again"}, status: :unauthorized
+        elsif !@user
+            render json: {error: "Unable to find username, please try again"}, status: :unauthorized
         else
-            render json: {error: "Invalid Credentials"}, status: :unauthorized
+            render json: {error: "Unable to login, please try again"}, status: :unauthorized
         end
     end
 
