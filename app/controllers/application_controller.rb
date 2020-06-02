@@ -8,7 +8,6 @@ class ApplicationController < ActionController::API
     end
 
     def generate_token(payload)
-        binding.pry
         JWT.encode(payload, ENV["JWT_TOKEN_SECRET"])
     end 
 
