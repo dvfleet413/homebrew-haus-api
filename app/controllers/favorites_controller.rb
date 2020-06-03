@@ -7,7 +7,8 @@ class FavoritesController < ApplicationController
     end
 
     def destroy
-        # Something like @user.recipes.delete(Recipe.find(params[:id]))
+        @user.recipes.delete(Recipe.find(params[:id]))
+        render json: @user
     end
 
 
