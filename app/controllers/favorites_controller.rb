@@ -2,7 +2,8 @@ class FavoritesController < ApplicationController
     before_action :set_user
 
     def create
-        # Something like @user.recipes << Recipe.find(params[:id])
+        @user.recipes << Recipe.find(params[:recipe_id])
+        render json: @user
     end
 
     def destroy
@@ -12,6 +13,6 @@ class FavoritesController < ApplicationController
 
     private
         def set_user
-            # something like @user = User.find(params[:userId])
+            @user = User.find(params[:user_id])
         end
 end
