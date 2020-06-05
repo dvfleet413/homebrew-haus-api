@@ -1,3 +1,3 @@
 class Hop < ApplicationRecord
-  belongs_to :recipe
+  has_many :recipes, through: :hop_ingredients
 end

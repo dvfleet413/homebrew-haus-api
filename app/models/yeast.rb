@@ -1,3 +1,3 @@
 class Yeast < ApplicationRecord
-  belongs_to :recipe
+  has_many :recipes, through: :yeast_ingredients
 end

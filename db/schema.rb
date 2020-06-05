@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_041811) do
+ActiveRecord::Schema.define(version: 2020_06_05_175626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "grain_ingredients", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "grain_id", null: false
+    t.decimal "weight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grain_id"], name: "index_grain_ingredients_on_grain_id"
+    t.index ["recipe_id"], name: "index_grain_ingredients_on_recipe_id"
+  end
+
   create_table "grains", force: :cascade do |t|
     t.string "name"
     t.float "weight"
@@ -31,6 +41,16 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_grains_on_recipe_id"
+  end
+
+  create_table "hop_ingredients", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "hop_id", null: false
+    t.decimal "weight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hop_id"], name: "index_hop_ingredients_on_hop_id"
+    t.index ["recipe_id"], name: "index_hop_ingredients_on_recipe_id"
   end
 
   create_table "hops", force: :cascade do |t|
@@ -41,6 +61,16 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_hops_on_recipe_id"
+  end
+
+  create_table "malt_ingredients", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "malt_id", null: false
+    t.decimal "weight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["malt_id"], name: "index_malt_ingredients_on_malt_id"
+    t.index ["recipe_id"], name: "index_malt_ingredients_on_recipe_id"
   end
 
   create_table "malts", force: :cascade do |t|
@@ -68,6 +98,15 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "yeast_ingredients", force: :cascade do |t|
+    t.bigint "recipe_id", null: false
+    t.bigint "yeast_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_yeast_ingredients_on_recipe_id"
+    t.index ["yeast_id"], name: "index_yeast_ingredients_on_yeast_id"
+  end
+
   create_table "yeasts", force: :cascade do |t|
     t.string "name"
     t.bigint "recipe_id", null: false
@@ -78,8 +117,16 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
 
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
+  add_foreign_key "grain_ingredients", "grains"
+  add_foreign_key "grain_ingredients", "recipes"
   add_foreign_key "grains", "recipes"
+  add_foreign_key "hop_ingredients", "hops"
+  add_foreign_key "hop_ingredients", "recipes"
   add_foreign_key "hops", "recipes"
+  add_foreign_key "malt_ingredients", "malts"
+  add_foreign_key "malt_ingredients", "recipes"
   add_foreign_key "malts", "recipes"
+  add_foreign_key "yeast_ingredients", "recipes"
+  add_foreign_key "yeast_ingredients", "yeasts"
   add_foreign_key "yeasts", "recipes"
 end
