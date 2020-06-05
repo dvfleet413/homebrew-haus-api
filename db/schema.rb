@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_175626) do
+ActiveRecord::Schema.define(version: 2020_06_05_184512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(version: 2020_06_05_175626) do
 
   create_table "grains", force: :cascade do |t|
     t.string "name"
-    t.float "weight"
     t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "lovibond"
+    t.decimal "gravity"
     t.index ["recipe_id"], name: "index_grains_on_recipe_id"
   end
 
@@ -56,7 +57,6 @@ ActiveRecord::Schema.define(version: 2020_06_05_175626) do
   create_table "hops", force: :cascade do |t|
     t.string "name"
     t.string "hop_type"
-    t.float "weight"
     t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -75,10 +75,11 @@ ActiveRecord::Schema.define(version: 2020_06_05_175626) do
 
   create_table "malts", force: :cascade do |t|
     t.string "name"
-    t.float "weight"
     t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "lovibond"
+    t.decimal "gravity"
     t.index ["recipe_id"], name: "index_malts_on_recipe_id"
   end
 
