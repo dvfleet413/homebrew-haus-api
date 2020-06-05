@@ -15,19 +15,6 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "at_bats", force: :cascade do |t|
-    t.bigint "player_id", null: false
-    t.string "result"
-    t.integer "base_reached"
-    t.integer "out_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "inning_id", null: false
-    t.string "out_code"
-    t.index ["inning_id"], name: "index_at_bats_on_inning_id"
-    t.index ["player_id"], name: "index_at_bats_on_player_id"
-  end
-
   create_table "favorites", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "user_id", null: false
@@ -35,15 +22,6 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_favorites_on_recipe_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
-  create_table "games", force: :cascade do |t|
-    t.integer "home_team_id"
-    t.integer "away_team_id"
-    t.integer "home_team_runs"
-    t.integer "away_team_runs"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "grains", force: :cascade do |t|
@@ -65,14 +43,6 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.index ["recipe_id"], name: "index_hops_on_recipe_id"
   end
 
-  create_table "innings", force: :cascade do |t|
-    t.bigint "game_id", null: false
-    t.float "number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_innings_on_game_id"
-  end
-
   create_table "malts", force: :cascade do |t|
     t.string "name"
     t.float "weight"
@@ -82,30 +52,12 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.index ["recipe_id"], name: "index_malts_on_recipe_id"
   end
 
-  create_table "players", force: :cascade do |t|
-    t.bigint "team_id", null: false
-    t.string "name"
-    t.integer "number"
-    t.string "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_id"], name: "index_players_on_team_id"
-  end
-
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "category"
     t.string "summary"
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.integer "wins"
-    t.integer "losses"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,14 +76,10 @@ ActiveRecord::Schema.define(version: 2020_06_01_041811) do
     t.index ["recipe_id"], name: "index_yeasts_on_recipe_id"
   end
 
-  add_foreign_key "at_bats", "innings"
-  add_foreign_key "at_bats", "players"
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
   add_foreign_key "grains", "recipes"
   add_foreign_key "hops", "recipes"
-  add_foreign_key "innings", "games"
   add_foreign_key "malts", "recipes"
-  add_foreign_key "players", "teams"
   add_foreign_key "yeasts", "recipes"
 end
