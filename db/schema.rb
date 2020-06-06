@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_184512) do
+ActiveRecord::Schema.define(version: 2020_06_05_195509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,12 +36,10 @@ ActiveRecord::Schema.define(version: 2020_06_05_184512) do
 
   create_table "grains", force: :cascade do |t|
     t.string "name"
-    t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "lovibond"
     t.decimal "gravity"
-    t.index ["recipe_id"], name: "index_grains_on_recipe_id"
   end
 
   create_table "hop_ingredients", force: :cascade do |t|
@@ -50,17 +48,15 @@ ActiveRecord::Schema.define(version: 2020_06_05_184512) do
     t.decimal "weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "hop_type"
     t.index ["hop_id"], name: "index_hop_ingredients_on_hop_id"
     t.index ["recipe_id"], name: "index_hop_ingredients_on_recipe_id"
   end
 
   create_table "hops", force: :cascade do |t|
     t.string "name"
-    t.string "hop_type"
-    t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id"], name: "index_hops_on_recipe_id"
   end
 
   create_table "malt_ingredients", force: :cascade do |t|
@@ -75,12 +71,10 @@ ActiveRecord::Schema.define(version: 2020_06_05_184512) do
 
   create_table "malts", force: :cascade do |t|
     t.string "name"
-    t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "lovibond"
     t.decimal "gravity"
-    t.index ["recipe_id"], name: "index_malts_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -110,24 +104,18 @@ ActiveRecord::Schema.define(version: 2020_06_05_184512) do
 
   create_table "yeasts", force: :cascade do |t|
     t.string "name"
-    t.bigint "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id"], name: "index_yeasts_on_recipe_id"
   end
 
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
   add_foreign_key "grain_ingredients", "grains"
   add_foreign_key "grain_ingredients", "recipes"
-  add_foreign_key "grains", "recipes"
   add_foreign_key "hop_ingredients", "hops"
   add_foreign_key "hop_ingredients", "recipes"
-  add_foreign_key "hops", "recipes"
   add_foreign_key "malt_ingredients", "malts"
   add_foreign_key "malt_ingredients", "recipes"
-  add_foreign_key "malts", "recipes"
   add_foreign_key "yeast_ingredients", "recipes"
   add_foreign_key "yeast_ingredients", "yeasts"
-  add_foreign_key "yeasts", "recipes"
 end
