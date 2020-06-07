@@ -3,6 +3,6 @@ class HopIngredient < ApplicationRecord
   belongs_to :hop
 
   def name
-    self.hop.name
+    self.alpha_acid ? "#{self.hop.name} @ #{self.alpha_acid}% AA" : self.hop.name
   end
 end
