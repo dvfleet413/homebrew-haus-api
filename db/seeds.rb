@@ -37,38 +37,6 @@ YeastIngredient.create!([
   {recipe_id: 7, yeast_id: 6}
 ])
 
-# Hop.create!([
-#   {name: "Centenial @ 9.5% AA"},
-#   {name: "East Kent Golding"},
-#   {name: "Cascade"},
-#   {name: "Cascade"},
-#   {name: "Cascade"},
-#   {name: "Northern Brewer @ 8.5% AA"},
-#   {name: "Williamette"},
-#   {name: "Mount Hood"},
-#   {name: "Williamette"},
-#   {name: "Cascade"},
-#   {name: "Northern Brewer @ 8.5% AA"},
-#   {name: "Cascade"},
-#   {name: "Willamette"},
-#   {name: "Cascade"},
-#   {name: "Nugget @ 12% AA"},
-#   {name: "Centennial @ 10% AA"},
-#   {name: "Cascade"},
-#   {name: "Yakima Magnum @ 15% AA"},
-#   {name: "German Hallertau Hersbrucker"},
-#   {name: "Willamette"},
-#   {name: "Cascade @ 5% AA"},
-#   {name: "Willamette"},
-#   {name: "Progress"},
-#   {name: "Cascade"},
-#   {name: "Cascade"},
-#   {name: "Willamette"},
-#   {name: "Whitbread Goldings Variety @ 5.7 AA"},
-#   {name: "Fuggles"},
-#   {name: "East Kent Goldings"}
-# ])
-
 Hop.create!([
   {name: "Admiral"},
   {name: "Ahtanum"},
