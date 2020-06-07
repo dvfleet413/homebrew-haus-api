@@ -7,7 +7,7 @@ class Recipe < ApplicationRecord
     has_many :malts, through: :malt_ingredients
     has_many :hops, through: :hop_ingredients
     has_one :yeast, through: :yeast_ingredient
-    accepts_nested_attributes_for :grains, :malts, :hops, :yeast
+    accepts_nested_attributes_for :grain_ingredients, :malt_ingredients, :hop_ingredients, :yeast_ingredient
     has_many :favorites
     has_many :users, through: :favorites
 end
