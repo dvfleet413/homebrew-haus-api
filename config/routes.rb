@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy]
   end
   resources :recipes, only: [:index, :create, :destroy]
+  resources :grains, only: [:index]
+  resources :hops, only: [:index]
+  resources :malts, only: [:index]
+  resources :yeasts, only: [:index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
