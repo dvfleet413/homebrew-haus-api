@@ -18,7 +18,13 @@ class Recipe < ApplicationRecord
     end
 
     def bitterness
-
+        self.hop_ingredients.reduce(0) do |sum, ingredient|
+            if ingredient.hop_type == 'bittering' 
+                return ingredient.alpha_acid ? (sum + (ingredient.weight * ingredient.alpha_acid * 25) / 6.7) : (sum + (ingredient.weight * 8.0 * 25) / 6.7)
+            elsif ingredient.hop_type == 'flavor' 
+                return ingredient.alpha_acid ? (sum + (ingredient.weight * ingredient.alpha_acid * 5) / 6.7) : (sum + (ingredient.weight * 8.0 * 5) / 6.7)
+            end
+        end
     end
 
     def abv
