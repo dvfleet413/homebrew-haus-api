@@ -9,6 +9,7 @@ class RecipeSerializer
             :malt_ingredients => {:only => [:id, :weight], :methods => :name},
             :hop_ingredients => {:only => [:id, :hop_type, :weight], :methods => :name},
             :yeast_ingredient => {:only => [:id], :methods => :name}
-        }, :only => [:id, :name, :category, :summary])
+        }, :methods => [:color, :bitterness, :abv],
+        :only => [:id, :name, :category, :summary])
     end
 end
