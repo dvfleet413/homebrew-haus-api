@@ -20,9 +20,9 @@ class RecipesController < ApplicationController
     private
         def recipes_params
             params.require(:recipe).permit(:name, :category, :summary, 
-                                            grains_attributes: [:name, :weight], 
-                                            malts_attributes: [:name, :weight],
-                                            hops_attributes: [:name, :hop_type, :weight],
-                                            yeast_attributes: [:name])
+                                            grain_ingredients_attributes: [:grain_id, :weight], 
+                                            malt_ingredients_attributes: [:malt_id, :name, :weight],
+                                            hop_ingredients_attributes: [:hop_id, :hop_type, :weight],
+                                            yeast_ingredient_attributes: [:yeast_id])
         end
 end

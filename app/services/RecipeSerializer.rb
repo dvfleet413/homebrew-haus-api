@@ -5,10 +5,10 @@ class RecipeSerializer
 
     def to_serialized_json
         @recipe.to_json(:include => {
-            :grains => {:only => [:id, :name, :weight]},
-            :malts => {:only => [:id, :name, :weight]},
-            :hops => {:only => [:id, :name, :hop_type, :weight]},
-            :yeast => {:only => [:name]}
+            :grain_ingredients => {:only => [:id, :weight], :methods => :name},
+            :malt_ingredients => {:only => [:id, :weight], :methods => :name},
+            :hop_ingredients => {:only => [:id, :hop_type, :weight], :methods => :name},
+            :yeast_ingredient => {:only => [:id], :methods => :name}
         }, :only => [:id, :name, :category, :summary])
     end
 end

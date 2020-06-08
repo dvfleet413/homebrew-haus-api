@@ -1,3 +1,4 @@
 class Malt < ApplicationRecord
-  belongs_to :recipe
+  has_many :malt_ingredients
+  has_many :recipes, through: :malt_ingredients
 end

@@ -1,3 +1,4 @@
 class Grain < ApplicationRecord
-  belongs_to :recipe
+  has_many :grain_ingredients
+  has_many :recipes, through: :grain_ingredients
 end
