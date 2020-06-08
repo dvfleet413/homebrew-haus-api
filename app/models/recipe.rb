@@ -16,4 +16,18 @@ class Recipe < ApplicationRecord
         malt_color= self.malt_ingredients.reduce(0){|sum, ingredient| (sum + (ingredient.malt.lovibond * (ingredient.weight)/5))}
         grain_color + malt_color
     end
+
+    def bitterness
+
+    end
+
+    def abv
+        points = self.grain_ingredients.reduce(0){|sum, ingredient| sum + (ingredient.grain.gravity * 1000 - 1000) * (ingredient.weight / 16) } + self.malt_ingredients.reduce(0){|sum, ingredient| sum + (ingredient.malt.gravity * 1000 - 1000) * (ingredient.weight) }
+        adjusted_points = points * 0.85
+        original_points_per_gallon = adjusted_points / 5
+        final_points_per_gallon = original_points_per_gallon * 0.28
+        original_gravity = (original_points_per_gallon + 1000) / 1000
+        final_gravity = (final_points_per_gallon + 1000) / 1000
+        (original_gravity - final_gravity) * 131.25
+    end
 end
