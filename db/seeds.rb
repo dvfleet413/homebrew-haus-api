@@ -278,7 +278,7 @@ Hop.create!([
   {name: "Waimea"},
   {name: "Wakatu"},
   {name: "Warrior"},
-  {name: "WGV (Whitbread Golding Variety"},
+  {name: "WGV (Whitbread Golding Variety)"},
   {name: "Willamette"},
   {name: "X04190"},
   {name: "X06277"},

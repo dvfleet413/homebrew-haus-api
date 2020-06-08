@@ -10,4 +10,10 @@ class Recipe < ApplicationRecord
     accepts_nested_attributes_for :grain_ingredients, :malt_ingredients, :hop_ingredients, :yeast_ingredient
     has_many :favorites
     has_many :users, through: :favorites
+
+    def color
+        grain_color= self.grain_ingredients.reduce(0){|sum, ingredient| (sum + (ingredient.grain.lovibond * (ingredient.weight / 16)/5))}
+        malt_color= self.malt_ingredients.reduce(0){|sum, ingredient| (sum + (ingredient.malt.lovibond * (ingredient.weight)/5))}
+        grain_color + malt_color
+    end
 end
