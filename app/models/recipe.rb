@@ -19,18 +19,17 @@ class Recipe < ApplicationRecord
     end
 
     def bitterness
+        result = 0
         if self.hop_ingredients.length > 0
-            self.hop_ingredients.reduce(0) do |sum, ingredient|
-                if ingredient.hop_type == 'bittering' 
-                    ingredient.alpha_acid ? (sum + (ingredient.weight * ingredient.alpha_acid * 25) / 6.7) : (sum + (ingredient.weight * 8.0 * 25) / 6.7)
-                elsif ingredient.hop_type == 'flavor' 
-                    ingredient.alpha_acid ? (sum + (ingredient.weight * ingredient.alpha_acid * 5) / 6.7) : (sum + (ingredient.weight * 8.0 * 5) / 6.7)
-                end
-            end
-        else
-            # if no hop_ingredients present, return 15, (minimum bitterness result)
-            return 15
+            result += self.hop_ingredients.select{|hop| hop.hop_type == "bittering"}.reduce(0) do |sum, ingredient|
+                ingredient.alpha_acid ? (sum + (ingredient.weight * ingredient.alpha_acid * 25) / 6.7) : (sum + (ingredient.weight * 8.0 * 25) / 6.7)
+            end    
+            result += self.hop_ingredients.select{|hop| hop.hop_type == "bittering"}.reduce(0) do |sum, ingredient|
+                ingredient.alpha_acid ? (sum + (ingredient.weight * ingredient.alpha_acid * 5) / 6.7) : (sum + (ingredient.weight * 8.0 * 5) / 6.7)
+            end    
         end
+        # minimum bitterness for front end should be 15
+        result >= 15 ? result : 15
     end
 
     def abv
@@ -43,7 +42,7 @@ class Recipe < ApplicationRecord
         original_gravity = (original_points_per_gallon + 1000) / 1000
         final_gravity = (final_points_per_gallon + 1000) / 1000
         abv = (original_gravity - final_gravity) * 131.25
-        # if ABV is less than 3, return 3 (minimum ABV result)
-        return (abv >= 3 ? abv : 3)
+        # minimum ABV for front end should be 3
+        abv >= 3 ? abv : 3
     end
 end
