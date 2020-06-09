@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :destroy] do
     resources :favorites, only: [:create, :destroy]
   end
+
+  post '/playground', to: "recipe_playgrounds#create"
   resources :recipes, only: [:index, :create, :destroy]
   resources :grains, only: [:index]
   resources :hops, only: [:index]
